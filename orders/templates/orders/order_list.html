@@ -1,0 +1,7 @@
+<h1>Listar de Ordenes</h1>
+<a href="{% url 'order_create'%}"> Crear nueva orden</a>
+<ul>
+    {% for order in orders%}
+    <li> Order # {{order.id}}- {{order.product.name}} - Cantidad:{{order.quantity}}</li>
+    {%endfor%}
+</ul>
