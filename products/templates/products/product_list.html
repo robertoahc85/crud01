@@ -1,5 +1,5 @@
 <h1> Lista de Productos</h1>
-<a href="{% product_create %}">Agregar nuevo producto</a>
+<a href="{% url 'product_create' %}">Agregar nuevo producto</a>
 <ul>
     {% for product in products%}
     <li>{{product.name}}-${{product.price}}</li>
