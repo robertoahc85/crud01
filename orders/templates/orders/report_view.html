@@ -1,0 +1,32 @@
+{% load custom_filters %}
+<h1> Reporte de Ordenes y producto con Filtros</h1>
+<form action="">
+    {{form.as_p}}
+    <button type="submit"> Aplicar Filtros</button>
+</form>
+<br>
+<table>
+    <tr>
+        <th>Id de Orden</th>
+        <th> Producto</th>
+        <th> Cantidad</th>
+        <th> Precio Unitario</th>
+        <th> Total</th>
+        <th>Fecha</th>
+    </tr>
+    {%for order in orders%}
+    <tr>
+        <td>{{order.id}}</td>
+        <td>{{order.product.name}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.product.price}}</td>
+        <td>{{order.quantity|multiply:order.product.price}}</td>
+        <td>{{order.created_at}}</td>
+    </tr>
+    {%endfor%}
+</table>
+ {%if not orders %}
+    <p> No se encontraron ordenes que coincidand con los filtros</p>
+ {%endif%}   
+
+ 

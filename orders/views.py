@@ -33,9 +33,24 @@ def report_view_form(request):
         end_date = form.cleaned_data.get('end_date')
         min_quantity = form.cleaned_data.get('min_quantity')
         max_quantity = form.cleaned_data.get('max_quantity')
-    
+        
+        if product :
+            orders = orders.filter(product=product)
+        if start_date:
+            orders = orders.filter(created_at__gte = start_date)
+        if end_date:
+            orders = orders.filter(created_at__gte = end_date) 
+        if min_quantity is not None:
+            orders = orders.filter(quantity__gte=min_quantity) 
+        if max_quantity is not None:
+            orders = orders.filter(quantity__lte = max_quantity)          
+            
+    return render(request, 'orders/report_view.html', {'form' :form, 'orders': orders})            
+        
     
    
 
 # list
-# Create
+# Crea el crud completo de clientes
+#Agregar a model de ordene a un cliente
+#filtro por cliente en un report
